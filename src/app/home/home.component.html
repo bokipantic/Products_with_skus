@@ -1,0 +1,24 @@
+<div>
+    <!-- <ul *ngFor = "let p of products$">
+        <li>{{ p.name }}</li>
+    </ul>
+    <br>
+    <ul *ngFor = "let s of skus$">
+        <li>{{ s.sku }}</li>
+    </ul>
+    <br>
+    <ul *ngFor = "let sd of skusDelay$">
+        <li>{{ sd.sku }}</li>
+    </ul>
+    <br>
+    <p>{{ product$.name }}</p>
+    <br> -->
+    <ul *ngFor = "let ps of productsWithSkus$">
+        <li>{{ ps.name }}</li>
+        <p *ngIf = "ps.productSkus.length > 0"><i>SKUS:</i></p>
+            <ul *ngFor = "let s of ps.productSkus">
+                <li>{{ s.sku }}</li>
+            </ul>
+    </ul>
+</div>
+

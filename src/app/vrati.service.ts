@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { forkJoin, Observable, of } from 'rxjs';
 import { delay, mergeMap, map } from 'rxjs/operators';
 
 import { Product, products } from './models/Product';
@@ -28,7 +28,21 @@ export class VratiService {
     return of(products.find((p: Product): Boolean => p.id === id));
   }
 
+  // forkJoin
   GetProductsWithSkus(): Observable<ProductWithSkus[]> {
+    return forkJoin([this.GetAllProducts(), this.GetAllProductSkusWithDelay()]).pipe(
+      map(([x, y]: [Product[], ProductSku[]]): ProductWithSkus[] => {
+        return x.map((a: Product): ProductWithSkus => ({
+          id: a.id,
+          name: a.name,
+          productSkus: y.filter((b: ProductSku): Boolean => b.productId === a.id)
+        }))
+      })
+    )
+  }
+
+  // mergeMap
+  GetProductsWithSkus1(): Observable<ProductWithSkus[]> {
     return this.GetAllProducts().pipe(
       mergeMap((x: Product[]): Observable<ProductWithSkus[]> => {
         return this.GetAllProductSkusWithDelay().pipe(
@@ -44,5 +58,5 @@ export class VratiService {
       })
     )
   }
- 
+
 }

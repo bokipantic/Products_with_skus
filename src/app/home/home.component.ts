@@ -11,27 +11,27 @@ import { ProductSku, ProductWithSkus } from '../models/ProductSku';
 export class HomeComponent implements OnInit {
   constructor(private serviceProduct: VratiService) { }
 
-  // products$: Product[];
-  // skus$: ProductSku[];
-  // skusDelay$: ProductSku[];
-  // product$: Product;
-  productsWithSkus$: ProductWithSkus[];
+  // products: Product[];
+  // skus: ProductSku[];
+  // skusDelay: ProductSku[];
+  // product: Product;
+  productsWithSkus: ProductWithSkus[];
 
   // listOfAllProducts(): void {
-  //   this.serviceProduct.GetAllProducts().subscribe(v => this.products$ = v);
+  //   this.serviceProduct.GetAllProducts().subscribe(v => this.products = v);
   // }
   // listOfAllProductSkus(): void {
-  //   this.serviceProduct.GetAllProductSkus().subscribe(v => this.skus$ = v);
+  //   this.serviceProduct.GetAllProductSkus().subscribe(v => this.skus = v);
   // }
   // listOfAllProductSkusWithDelay(): void {
-  //   this.serviceProduct.GetAllProductSkusWithDelay().subscribe(v => this.skusDelay$ = v);
+  //   this.serviceProduct.GetAllProductSkusWithDelay().subscribe(v => this.skusDelay = v);
   // }
   // listOneProduct(): void {
   //   const id = Math.floor(Math.random() * 3) + 1;
-  //   this.serviceProduct.GetOneProduct(id).subscribe(v => this.product$ = v);
+  //   this.serviceProduct.GetOneProduct(id).subscribe(v => this.product = v);
   // }
   listOfProductsWithSkus(): void {
-    this.serviceProduct.GetProductsWithSkus().subscribe(v => this.productsWithSkus$ = v);
+    this.serviceProduct.GetProductsWithSkus().subscribe(v => this.productsWithSkus = v);
   }
 
   ngOnInit(): void {
